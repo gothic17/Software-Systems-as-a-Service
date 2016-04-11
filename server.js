@@ -4,9 +4,12 @@ var logger = require('morgan');
 var app = express();
 var http = require('http').Server(app);
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var bodyParser = require("body-parser");
 var mongo = require('mongoskin');
-var db = mongo.db("mongodb://localhost:27017/books", {native_parser:true});
+var db = mongo.db("mongodb://localhost:27017/accounts", {native_parser:true});
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(function(req,res,next){
@@ -17,27 +20,114 @@ app.use(function(req,res,next){
 	next();
 });
 
+app.use(passport.initialize());
+app.use(passport.session());
+//app.use(app.router);
+
 // Log the requests
 app.use(logger('dev'));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public'))); 
 
+app.get('/login', function(req, res) {
+  res.sendfile('public/login.html');
+});
 
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/loginSuccess',
+    failureRedirect: '/loginFailure'
+  })
+);
 
+app.get('/loginFailure', function(req, res, next) {
+  res.send('Failed to authenticate');
+});
+
+app.get('/loginSuccess', function(req, res, next) {
+  res.send('Successfully authenticated');
+});
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.use(new LocalStrategy(function(username, password, done) {
+  process.nextTick(function() {
+    db.collection('accounts').findOne({
+      'login': username, 
+    }, function(err, user) {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        return done(null, false);
+      }
+
+      if (user.password != password) {
+        return done(null, false);
+      }
+
+      return done(null, user);
+    });
+  });
+}));
 
 //--------HTTP REQUESTS-------------
 
-app.get('/test',function(req,res){
-	res.sendFile(path.join(__dirname + '/public/index.html'));
+app.get('/account',function(req,res){
+	res.sendFile(path.join(__dirname + '/public/account.html'));
 });
 
-app.get('/',function(req,res){
+app.get('/registration',function(req,res){
+	res.sendFile(path.join(__dirname + '/public/registration.html'));
+});
+
+app.post('/registration',function(req,res){
+	var username = req.body.username;
+	var password = req.body.password;
+
+	if(!!username && !!password){
+		db.collection('accounts').insert({login:username , password: password}, function(err, result) {
+			if(!!err){
+				console.log("Some error");
+			}else{
+				console.log("Registration succesfull!");
+			}
+		});
+	}
+	else {
+		console.log("Please provide all required data");
+	}
+});
+
+app.get('/accounts',function(req,res){
 	var data = {
 		"Data":""
 	};
-	data["Data"] = "Welcome to Book Store DEMO using Mongodb...";
-	res.json(data);
+	var db = req.db;
+	db.collection('accounts').find().toArray(function (err, items) {
+	if(!!err){
+		data["Books"] = "Error fetching data";
+		res.json(data);
+	}else{
+		if(!!items && items.length != 0){
+			data["error"] = 0;
+			data["Books"] = items;
+			res.json(data);
+		}else{
+			data["error"] = 1;
+			data["Books"] = 'No books Found..';
+			res.json(data);
+		}
+	}
+	});
 });
 
 app.get('/book',function(req,res){
