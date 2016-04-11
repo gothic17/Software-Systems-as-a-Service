@@ -1,5 +1,9 @@
-var app   = require('express')();
+var path = require('path');
+var express = require('express');
+var logger = require('morgan');
+var app = express();
 var http = require('http').Server(app);
+
 var bodyParser = require("body-parser");
 var mongo = require('mongoskin');
 var db = mongo.db("mongodb://localhost:27017/books", {native_parser:true});
@@ -11,6 +15,21 @@ app.use(function(req,res,next){
   res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
 	next();
+});
+
+// Log the requests
+app.use(logger('dev'));
+
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public'))); 
+
+
+
+
+//--------HTTP REQUESTS-------------
+
+app.get('/test',function(req,res){
+	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 app.get('/',function(req,res){
@@ -116,7 +135,10 @@ app.delete('/book/:bookname',function(req,res){
 	}
 });
 
-http.listen(8080,function(){
-	console.log("Connected & Listen to port 8080");
-});
+
+
+
+// Fire it up!
+app.listen(3000);
+console.log('Listening on port 3000');
 
