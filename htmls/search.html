@@ -15,7 +15,7 @@ Released   : 20121026
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Contacts FOODIE</title>
+<title>Search FOODIE</title>
 <link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css' />
 <link href='http://fonts.googleapis.com/css?family=Abel|Satisfy' rel='stylesheet' type='text/css' />
 <link href="style.css" rel="stylesheet" type="text/css" media="screen" />
@@ -30,24 +30,44 @@ Released   : 20121026
 			<div id="menu">
 				<ul>
 					<li><a href="index.html">Homepage</a></li>
-					<li><a href="search.html">Search</a></li>
+					<li class="current_page_item"><a href="search.html">Search</a></li>
 					<li><a href="about.html">About</a></li>
-					<li class="current_page_item"><a href="contact.html">Contact</a></li>
+					<li><a href="contact.html">Contact</a></li>
 					<li><a href="login.html">Login</a></li>
 				</ul>
 			</div>
 		</div>
 		<div id="banner">
-    	<form class="info_form" style="float:left; text-align:left;">
-				<div class="field">
-					<h5>Contact information:</h5>
-					<p></p>
-					<p style="line-height:100%;">Address: Blablabla</p>
-					<p style="line-height:100%;">E-mail: Blablabla</p>
-					<p style="line-height:100%;">Phone: Blablabla</p>
-					<p style="line-height:100%;">We are always glad to answer your questions and hear your feedbacks!</p>
+      <form class="login_form">
+			<div class="post">
+				<h5 class="title"><a>Welcome to FOODIE project!</a></h5>
+				<div class="entry">
+					<p>Start searching for a food here.</p>
+          <form name="search" method="POST" action="search">
+            <div class="field">
+              Search for an item<input type="text" name="username">
+            </div>
+          <div class="button" style="margin:10px 50px 100px 100px;">
+            <input name="search_button" type="button" value="Search"/>
+          </div>
+          </form>
 				</div>
-			</form>
+				</div>
+      </form>
+      <form class="signup_form">
+				<div class="entry">
+					<h3 style="margin-top: 50px;">Type the name of the food you are interested in and find out our offers near you right now!</h3>
+				</div>
+      </form>
+		</div>
+	</div>
+	<div id="featured-content">
+		<div id="column1">
+			<h2>Results</h2>
+			<ul name="results_list">
+				<div><li><p>The info about the 1st one.</p></li></div>
+        <div><li><p>The info about the 2nd one.</p></li></div>
+			</ul>
 		</div>
 	</div>
 </div>
