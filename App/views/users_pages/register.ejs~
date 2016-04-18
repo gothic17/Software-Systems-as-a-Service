@@ -1,0 +1,87 @@
+<html>
+<head>
+	<% include ../partials/head %>
+</head>
+<body>
+<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="/users">Foodie</a></h1>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="users/index">Homepage</a></li>
+					<li><a href="users/search">Search</a></li>
+					<li><a href="users/about">About</a></li>
+					<li><a href="users/contact">Contact</a></li>
+					<li><a href="/">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="banner_long">
+
+      <form class="text_form" name="form_text">
+        <div class="field">
+          <p>Username</p>
+        </div>
+        <div class="field">
+          <p>Password</p>
+        </div>
+        <div class="field">
+          <p>Retype password</p>
+        </div>
+        <div class="field">
+          <p>E-mail</p>
+        </div>
+        <div class="field">
+          <p>Address</p>
+        </div>
+        <div class="field">
+          <p>Phone</p>
+        </div>
+        <div class="submit_acc_button">
+      </div>
+      </form>
+      <form class="register_form" name="form_register" method="POST" action="registration">
+        <div class="field">
+          <input type="text" name="login">
+        </div>
+        <div class="field">
+          <input type="password" name="password">
+        </div>
+        <div class="field">
+          <input type="password" name="confirm_password">
+        </div>
+        <div class="field">
+          <input type="password" name="email">
+        </div>
+        <div class="field">
+          <input type="password" name="address">
+        </div>
+        <div class="field">
+          <input type="password" name="phone">
+        </div>
+        <div class="submit_acc_button">
+        <input name="submit_account_button" type="submit" value="Sign up"/>
+      </div>
+      </form>
+      <form class="info_form">
+        <div class="field">
+  				<h1 style="margin-top:30px;"><a>Sign up right now for free!</a></h1>
+  			</div>
+        <div>
+          <p><img style="margin-top:30px;" src="images/foodfridge.jpg" width="300" height="150" alt="" /></p>
+        </div>
+      </form>
+		</div>
+	</div>
+
+</div>
+		
+	<!-- end #page -->
+	
+	</main>
+  <% include ../partials/footer %>
+</body>
+</html>

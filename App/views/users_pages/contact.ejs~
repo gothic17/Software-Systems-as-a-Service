@@ -1,0 +1,42 @@
+<html>
+<head>
+	<% include ../partials/head %>
+</head>
+<body>
+	<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="">Foodie</a></h1>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="users/index">Homepage</a></li>
+					<li><a href="users/search">Search</a></li>
+					<li><a href="users/about">About</a></li>
+					<li class="current_page_item"><a href="users/contact">Contact</a></li>
+					<li><a href="/">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="banner">
+    	<form class="info_form" style="float:left; text-align:left;">
+				<div class="field">
+					<h5>Contact information:</h5>
+					<p></p>
+					<p style="line-height:100%;">Address: Blablabla</p>
+					<p style="line-height:100%;">E-mail: Blablabla</p>
+					<p style="line-height:100%;">Phone: Blablabla</p>
+					<p style="line-height:100%;">We are always glad to answer your questions and hear your feedbacks!</p>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+		
+	<!-- end #page -->
+	
+	</main>
+  <% include ../partials/footer %>
+</body>
+</html>

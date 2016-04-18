@@ -1,0 +1,29 @@
+<html>
+<head>
+	<% include ../partials/head %>
+</head>
+<body>
+	<div id="wrapper">
+	<div id="header-wrapper">
+		<div id="header" class="container">
+			<div id="logo">
+				<h1><a href="users/">Foodie</a></h1>
+			</div>
+			<div id="menu">
+				<ul>
+					<li><a href="/users/">Homepage</a></li>
+					<li><a href="users/search">Search</a></li>
+					<li class="users/current_page_item"><a href="about">About</a></li>
+					<li><a href="users/contact">Contact</a></li>
+					<li><a href="/">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="banner">
+
+		</div>
+	</div>
+</div>
+  <% include ../partials/footer %>
+</body>
+</html>
