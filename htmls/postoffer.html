@@ -40,6 +40,9 @@ Released   : 20121026
 		<div id="banner_long">
 
       <form class="text_form" name="form_food" style="height:300px;">
+				<div class="field">
+          <p>Name</p>
+        </div>
         <div class="field">
           <p>Food item description</p>
         </div>
@@ -48,6 +51,9 @@ Released   : 20121026
         </div>
       </form>
       <form class="register_form" name="form_food_desc" method="POST" action="registration" style="height:300px;">
+				<div class="field">
+          <input style="width:185px;margin-left:0px;" type="text" name="food_name">
+        </div>
         <div class="field">
           <textarea style="height:100px;width:200px;" type="text" name="food_description"></textarea>
         </div>
@@ -55,7 +61,7 @@ Released   : 20121026
           <input style="margin-top:10px;width:185px;margin-left:0px;" type="text" name="expiration_date">
         </div>
         <div class="submit_acc_button">
-        <input name="submit_account_button" type="button" onclick="rpost_offer(this.form)" value="Post offer"/>
+        <input name="submit_account_button" type="button" onclick="post_offer(this.form)" value="Post offer"/>
       </div>
       </form>
       <form class="info_form" style="height:300px;">
